@@ -27,6 +27,13 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [HttpPost("GetEmployeeByName")]
+        public async Task<IActionResult>GetEmployeeByName(string employeeName)
+        {
+            var data = await _employeeService.GetEmployeeByName(employeeName);
+            return Ok(new ResponseModel { Data = data });
+        }
+
         [HttpPost("AddNewEmployee")]
         public async Task<IActionResult> AddNewEmployee(AddNewEmployee input)
         {
@@ -42,9 +49,9 @@ namespace POS.Controllers
         }
 
         [HttpGet("DeleteEmployee")]
-        public async Task<IActionResult> DeleteEmployee(Guid id)
+        public async Task<IActionResult> DeleteEmployee(Guid id ,string updatedBy)
         {
-            await _employeeService.DeleteEmployee(id);
+            await _employeeService.DeleteEmployee(id,updatedBy);
             return Ok("Delete successfully");
         }
     }

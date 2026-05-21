@@ -27,6 +27,29 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [HttpGet("DailySaleOrderReport")]
+        public async Task<IActionResult> DailySaleOrderReport()
+        {
+            var data = await _orderService.GetDailySales();
+            return Ok(new ResponseModel { Data = data });
+        }
+
+        [HttpGet("MonthlySaleOrderReport")]
+        public async Task<IActionResult> MonthlySaleOrderReport()
+        {
+
+
+            var data = await _orderService.GetMonthlySales();
+            return Ok(new ResponseModel { Data = data });
+        }
+
+        [HttpGet("WeeklySaleOrderReport")]
+        public async Task<IActionResult> WeeklySaleOrderReport()
+        {
+            var data = await _orderService.GetWeeklySales();
+            return Ok(new ResponseModel { Data = data });
+        }
+
         [HttpPost("NewOrder")]
         public async Task<IActionResult> newOrder(AddNewOrder input)
         {
@@ -43,9 +66,9 @@ namespace POS.Controllers
         }
 
         [HttpGet("DeleteOrder")]
-        public async Task<IActionResult> DeleteOrder(Guid id)
+        public async Task<IActionResult> DeleteOrder(Guid id, string updatedBy)
         {
-            await _orderService.DeleteOrder(id);
+            await _orderService.DeleteOrder(id,updatedBy);
             return Ok("Delete successfully");
         }
     }

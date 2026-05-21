@@ -86,9 +86,9 @@ namespace POS.Controllers
         }
 
         [HttpGet("DeleteOrderItem")]
-        public async Task<IActionResult> DeleteOrderItem(Guid id)
+        public async Task<IActionResult> DeleteOrderItem(Guid id, string updatedBy)
         {
-            await _orderItemService.DeleteOrderItem(id);
+            await _orderItemService.DeleteOrderItem(id,updatedBy);
             return Ok("Delete order item successfully");
         }
 

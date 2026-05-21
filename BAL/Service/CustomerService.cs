@@ -60,12 +60,14 @@ namespace BAL.Service
             await _unitofWork.SaveChangesAsync();
         }
 
-        public async Task DeleteCustomer(Guid id)
+        public async Task DeleteCustomer(Guid id, string updatedBy)
         {
             var data = (await _unitofWork.Customer.GetByCondition(x => x.CustomerId == id)).FirstOrDefault();
             if (data != null)
             {
                 data.ActiveFlag = false;
+                data.UpdatedAt = DateTime.UtcNow;
+                data.UpdatedBy = updatedBy;
             }
             _unitofWork.Customer.Update(data);
             await _unitofWork.SaveChangesAsync();

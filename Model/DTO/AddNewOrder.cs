@@ -9,7 +9,7 @@ namespace Model.DTO
 {
     public class AddNewOrder
     {
-        public Guid OrderId { get; set; }
+        public Guid orderId { get; set; }
         public string? orderNumber { get; set; }
         public string? customerId { get; set; }
         public string? employeeId { get; set; }

@@ -33,6 +33,13 @@ namespace Retail_API_.Controllers
 
         }
 
+        [HttpPost("GetProductByName")]
+        public async Task<IActionResult> GetProductByName(string productName)
+        {
+            var data = await _ProductService.GetByProductName(productName);
+            return Ok(new ResponseModel { Data = data });
+        }
+
         [HttpGet("DisplayProductList")]
         public async Task<IActionResult> DisplayProduct()
         {
@@ -58,9 +65,9 @@ namespace Retail_API_.Controllers
         }
 
         [HttpGet("Delete/Product")]
-        public async Task<IActionResult> DeleteProduct(Guid id)
+        public async Task<IActionResult> DeleteProduct(Guid id, string updatedBy)
         {
-            await _ProductService.DeleteProduct(id);
+            await _ProductService.DeleteProduct(id,updatedBy);
             return Ok("Delete successfully.");
         }
 

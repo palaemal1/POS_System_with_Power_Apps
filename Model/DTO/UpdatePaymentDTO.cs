@@ -8,6 +8,7 @@ namespace Model.DTO
 {
     public class UpdatePaymentDTO
     {
+        public decimal amount { get; set; }
         public string? paymentMethod { get; set; }
         public DateTime paymentDate { get; set; }
         public string? updatedBy { get; set; }

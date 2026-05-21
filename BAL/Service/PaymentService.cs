@@ -47,6 +47,7 @@ namespace BAL.Service
             var data = (await _unitofWork.Payment.GetByCondition(x => x.PaymentId == id)).FirstOrDefault();
             if (data != null)
             {
+                data.Amount = input.amount;
                 data.PaymentMethod = input.paymentMethod;
                 data.PaymentDate = input.paymentDate;
                 data.UpdatedBy = input.updatedBy;

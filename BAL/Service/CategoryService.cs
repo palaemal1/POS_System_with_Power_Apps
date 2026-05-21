@@ -60,12 +60,14 @@ namespace BAL.Service
             await _unitofWork.SaveChangesAsync();
         }
 
-        public async Task DeleteCategory(Guid id)
+        public async Task DeleteCategory(Guid id,string updatedBy )
         {
             var data = (await _unitofWork.Category.GetByCondition(x => x.CategoryId == id)).FirstOrDefault();
             if (data != null)
             {
                 data.ActiveFlag = false;
+                data.UpdatedBy = updatedBy;
+                data.UpdatedAt = DateTime.UtcNow;
             }
 
              _unitofWork.Category.Update(data);

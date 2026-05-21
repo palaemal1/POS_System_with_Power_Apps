@@ -43,9 +43,9 @@ namespace POS.Controllers
         }
 
         [HttpGet("DeleteProduct")]
-        public async Task<IActionResult> DeleteCategory(Guid id)
+        public async Task<IActionResult> DeleteCategory(Guid id, string updatedBy)
         {
-            await _categoryService.DeleteCategory(id);
+            await _categoryService.DeleteCategory(id,updatedBy);
             return Ok("Delete Successfully");
         }
     }

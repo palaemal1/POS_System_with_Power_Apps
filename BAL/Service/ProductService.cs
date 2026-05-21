@@ -24,6 +24,11 @@ namespace BAL.Service
             return data;
         }
 
+        public async Task<IEnumerable<Products>> GetByProductName(string productName)
+        {
+            var data = await _unitOfWork.Product.GetByCondition(x => x.ProductName == productName);
+            return data;
+        }
         public async Task<IEnumerable<object>> DisplayProduct()
         {
             var data = await _unitOfWork.Product.DisplayProduct();
@@ -78,12 +83,14 @@ namespace BAL.Service
             await _unitOfWork.SaveChangesAsync();
         }
        
-        public async Task DeleteProduct(Guid id)
+        public async Task DeleteProduct(Guid id, string updatedBy)
         {
             var data = (await _unitOfWork.Product.GetByCondition(x => x.ProductId == id )).FirstOrDefault();
             if (data != null)
             {
                 data.ActiveFlag = false;
+                data.UpdatedBy = updatedBy;
+                data.UpdatedAt = DateTime.UtcNow;
             }
             _unitOfWork.Product.Update(data);
             await _unitOfWork.SaveChangesAsync();

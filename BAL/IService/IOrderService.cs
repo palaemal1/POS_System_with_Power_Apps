@@ -11,8 +11,11 @@ namespace BAL.IService
     public interface IOrderService
     {
         Task<IEnumerable<Orders>> GetAllOrder();
+        Task<IEnumerable<DailySaleDTO>> GetDailySales();
+        Task<IEnumerable<MonthlySaleReportDTO>> GetMonthlySales();
+        Task<IEnumerable<WeeklySaleDTO>> GetWeeklySales();
         Task AddOrder(AddNewOrder input);
         Task UpdateOrder(Guid id, UpdateOrderDTO input);
-        Task DeleteOrder(Guid id);
+        Task DeleteOrder(Guid id, string updatedBy);
     }
 }

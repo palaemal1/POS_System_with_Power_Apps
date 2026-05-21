@@ -14,7 +14,7 @@ namespace BAL.IService
         Task AddOrderItem(AddNewOrderItem input);
         Task<IEnumerable<OrderItems>> GetAllOrderItem();
         Task updateOrderItem(Guid id, UpdateOrderItemDTO input);
-        Task DeleteOrderItem(Guid id);
+        Task DeleteOrderItem(Guid id, string updatedBy);
 
         Task<IEnumerable<object>> GetAllOrderItemList();
         Task<IEnumerable<OrderItems>> GetOrderItemListById(string id);

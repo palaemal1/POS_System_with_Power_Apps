@@ -41,9 +41,9 @@ namespace POS.Controllers
         }
 
         [HttpGet("DeleteCustomer")]
-        public async Task<IActionResult> DeleteCustomer(Guid id)
+        public async Task<IActionResult> DeleteCustomer(Guid id, string updatedBy)
         {
-            await _customerService.DeleteCustomer(id);
+            await _customerService.DeleteCustomer(id,updatedBy);
             return Ok("Delete data successfully");
         }
     }
