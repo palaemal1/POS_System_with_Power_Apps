@@ -184,14 +184,14 @@ namespace BAL.Service
             await _unitofWork.SaveChangesAsync();
         }
 
-        public async Task DeleteOrder(Guid id, string updatedBy)
+        public async Task DeleteOrder(Guid id, DeleteDTO request)
         {
             var data = (await _unitofWork.Order.GetByCondition(x => x.OrderId == id)).FirstOrDefault();
             if (data != null)
             {
                 data.ActiveFlag = false;
                 data.UpdatedAt = DateTime.UtcNow;
-                data.UpdatedBy = updatedBy;
+                data.UpdatedBy = request.updatedBy;
             }
              _unitofWork.Order.Update(data);
             await _unitofWork.SaveChangesAsync();

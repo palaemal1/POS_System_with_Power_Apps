@@ -64,10 +64,10 @@ namespace Retail_API_.Controllers
             return Ok("Update successfully");
         }
 
-        [HttpGet("Delete/Product")]
-        public async Task<IActionResult> DeleteProduct(Guid id, string updatedBy)
+        [HttpPatch("Delete/Product/{id}")]
+        public async Task<IActionResult> DeleteProduct(Guid id, DeleteDTO request)
         {
-            await _ProductService.DeleteProduct(id,updatedBy);
+            await _ProductService.DeleteProduct(id,request);
             return Ok("Delete successfully.");
         }
 

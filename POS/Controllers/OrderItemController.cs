@@ -85,10 +85,10 @@ namespace POS.Controllers
             return Ok("Update order item successfully");
         }
 
-        [HttpGet("DeleteOrderItem")]
-        public async Task<IActionResult> DeleteOrderItem(Guid id, string updatedBy)
+        [HttpPatch("DeleteOrderItem/{id}")]
+        public async Task<IActionResult> DeleteOrderItem(Guid id, DeleteDTO request)
         {
-            await _orderItemService.DeleteOrderItem(id,updatedBy);
+            await _orderItemService.DeleteOrderItem(id,request);
             return Ok("Delete order item successfully");
         }
 

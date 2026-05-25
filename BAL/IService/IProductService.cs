@@ -17,7 +17,7 @@ namespace BAL.IService
        // Task<IEnumerable<Product>> GetProductWithActiveFlag();
         Task AddProduct(AddProductDTO input);
         Task UpdateProduct(Guid id, UpdateProductDTO inputModel);
-        Task DeleteProduct(Guid id, string updatedBy);
+        Task DeleteProduct(Guid id, DeleteDTO request);
         Task<IEnumerable<Products>> GetByProductName(string productName);
         Task<IEnumerable<object>> DisplayProduct();
 

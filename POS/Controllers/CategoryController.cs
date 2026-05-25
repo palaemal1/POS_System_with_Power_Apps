@@ -42,10 +42,10 @@ namespace POS.Controllers
             return Ok("Update successfully");
         }
 
-        [HttpGet("DeleteProduct")]
-        public async Task<IActionResult> DeleteCategory(Guid id, string updatedBy)
+        [HttpPatch("DeleteCategory/{id}")]
+        public async Task<IActionResult> DeleteCategory(Guid id, DeleteDTO request)
         {
-            await _categoryService.DeleteCategory(id,updatedBy);
+            await _categoryService.DeleteCategory(id,request);
             return Ok("Delete Successfully");
         }
     }

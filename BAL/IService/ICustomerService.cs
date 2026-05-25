@@ -13,6 +13,6 @@ namespace BAL.IService
         Task<IEnumerable<Customers>> GetAllCustomer();
         Task AddNewCustomer(AddCustomerDTO input);
         Task UpdateCustomer(Guid id, UpdateCustomer input);
-        Task DeleteCustomer(Guid id, string updatedBy);
+        Task DeleteCustomer(Guid id, DeleteDTO request);
     }
 }

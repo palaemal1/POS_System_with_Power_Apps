@@ -40,6 +40,7 @@ namespace BAL.Service
           
             var data = new Products()
             {
+                ProductId=input.ProductId,
                 ProductName = input.productName,
                 SKU=input.sku,
                 Description=input.description,
@@ -83,21 +84,39 @@ namespace BAL.Service
             await _unitOfWork.SaveChangesAsync();
         }
        
-        public async Task DeleteProduct(Guid id, string updatedBy)
+        //public async Task DeleteProduct(Guid id, string updatedBy)
+        //{
+        //    var data = (await _unitOfWork.Product.GetByCondition(x => x.ProductId == id )).FirstOrDefault();
+        //    if (data != null)
+        //    {
+        //        data.ActiveFlag = false;
+        //        data.UpdatedBy = updatedBy;
+        //        data.UpdatedAt = DateTime.UtcNow;
+        //    }
+        //    _unitOfWork.Product.Update(data);
+        //    await _unitOfWork.SaveChangesAsync();
+        //}
+
+       
+        public async Task DeleteProduct(Guid id, DeleteDTO request)
         {
-            var data = (await _unitOfWork.Product.GetByCondition(x => x.ProductId == id )).FirstOrDefault();
+            var data = (await _unitOfWork.Product
+                .GetByCondition(x => x.ProductId == id))
+                .FirstOrDefault();
+
             if (data != null)
             {
                 data.ActiveFlag = false;
-                data.UpdatedBy = updatedBy;
+                data.UpdatedBy = request.updatedBy;
                 data.UpdatedAt = DateTime.UtcNow;
             }
+
             _unitOfWork.Product.Update(data);
             await _unitOfWork.SaveChangesAsync();
         }
 
-       
-       
+
+
 
     }
 }

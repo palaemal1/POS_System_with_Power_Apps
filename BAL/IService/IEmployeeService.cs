@@ -14,6 +14,6 @@ namespace BAL.IService
         Task<IEnumerable<Employees>> GetAllEmployee();
         Task<IEnumerable<EmployeeAccessDTO>> GetEmployeeByName(string employeeName);
         Task UpdateEmployee(Guid id, UpdateEmployeeDTO input);
-        Task DeleteEmployee(Guid id ,string updatedBy);
+        Task DeleteEmployee(Guid id , DeleteDTO request);
     }
 }

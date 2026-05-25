@@ -13,6 +13,6 @@ namespace BAL.IService
         Task<IEnumerable<Categories>> GetAllCategory();
         Task AddNewCategory(CategoryDTO input);
         Task UpdateCategory(Guid id, UpdateCategoryDTO input);
-        Task DeleteCategory(Guid id, string updatedBy);
+        Task DeleteCategory(Guid id, DeleteDTO request);
     }
 }

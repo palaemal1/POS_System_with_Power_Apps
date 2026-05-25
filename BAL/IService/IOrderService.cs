@@ -16,6 +16,6 @@ namespace BAL.IService
         Task<IEnumerable<WeeklySaleDTO>> GetWeeklySales();
         Task AddOrder(AddNewOrder input);
         Task UpdateOrder(Guid id, UpdateOrderDTO input);
-        Task DeleteOrder(Guid id, string updatedBy);
+        Task DeleteOrder(Guid id, DeleteDTO request);
     }
 }
