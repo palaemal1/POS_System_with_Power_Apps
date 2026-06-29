@@ -27,7 +27,7 @@ namespace POS.Controllers
             var result = await authService.Login(input);
             if (result is null)
             {
-                return BadRequest("Invalid employee name or password!");
+                return BadRequest("Invalid employee email or password!");
             }
             return Ok(new ResponseModel
             {

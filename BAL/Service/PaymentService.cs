@@ -30,6 +30,7 @@ namespace BAL.Service
         {
             var data = new Payments()
             {
+                PaymentId=input.paymentId,
                 OrderId = input.orderId,
                 PaymentMethod = input.paymentMethod,
                 Amount = input.amount,

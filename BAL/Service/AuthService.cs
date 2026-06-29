@@ -28,7 +28,7 @@ namespace BAL.Service
         }
         public async Task<TokenResponseDTO?> Login(AddNewEmployeeDTO input)
         {
-            var emp = await content.Employees.FirstOrDefaultAsync(e => e.EmployeeName == input.employeeName);
+            var emp = await content.Employees.FirstOrDefaultAsync(e => e.Email == input.email);
            
             if (emp is null)
             {
@@ -56,12 +56,12 @@ namespace BAL.Service
 
         }
 
-
+       // private string CreateToken(Employees emp)
         private string CreateToken(Employees emp)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name,emp.EmployeeName), 
+                new Claim(ClaimTypes.Email,emp.Email), 
                 new Claim(ClaimTypes.NameIdentifier,emp.EmployeeId.ToString()), 
                 new Claim(ClaimTypes.Role,emp.Role)
             };
