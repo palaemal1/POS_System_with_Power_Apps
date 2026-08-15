@@ -1,10 +1,10 @@
 {
   "dependencies": {
     "CustomConnector": {
-      "connectionInfo": "Custom Connector: POS_APIs (Environment: FUSION SOLUTION PACKAGE)",
+      "connectionInfo": "Custom Connector: POS_APIs (Environment: heptaautolab (default))",
       "connectorName": "POS_APIs",
-      "environmentUrl": "https://org9b0abc1a.crm5.dynamics.com/",
-      "environmentId": "6d10f066-29b4-ec66-a925-7211cb937590",
+      "environmentUrl": "https://org302d3b40.crm5.dynamics.com/",
+      "environmentId": "3c04d34a-6639-4310-b2bb-23c9311fc845",
       "type": "powerplatform.local"
     }
   }

@@ -25,7 +25,7 @@ namespace BAL.Service
         }
 
 
-        public async Task<IEnumerable<OrderItems>> GetAllOrderItem()
+        public async Task<IEnumerable<object>> GetAllOrderItem()
         {
             var data = await _unitofWork.OrderItem.GetAll();
             return data;
@@ -152,6 +152,7 @@ namespace BAL.Service
         public async Task<IEnumerable<object>> GetAllOrderItemList()
         {
             var data = await _unitofWork.OrderItem.GetAllOrderItemList();
+           
             return data;
         }
     }

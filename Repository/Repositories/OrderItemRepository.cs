@@ -35,14 +35,18 @@ namespace Repository.Repositories
                                        join e in employee on o.EmployeeId equals e.EmployeeId.ToString()
                                        select new
                                        {
+                                           orderItemId=oIL.OrderItemId,
+                                           orderId=oIL.OrderId,
+                                           productId=oIL.ProductId,
                                            qty = oIL.Qty,
                                            lineTotal = oIL.LineTotal,
                                            productName = p.ProductName,
+                                           unitCost=p.Cost,
                                            paymentStatus = o.PaymentStatus,
                                            employeeName = e.EmployeeName,
                                            orderStatus = o.OrderStatus,
                                            discount = oIL.Discount,
-                                           unitProce = oIL.UnitPrice,
+                                           unitPrice = oIL.UnitPrice,
                                            orderNumber = o.OrderNumber,
                                            taxAmt = o.TaxAmount,
                                            categoryName = c.CategoryName,
@@ -74,6 +78,7 @@ namespace Repository.Repositories
 
             
             var orderItem = orderItems
+                .OrderByDescending(oi=>oi.CreatedAt)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize);
 
@@ -96,7 +101,7 @@ namespace Repository.Repositories
                              employeeName = e.EmployeeName,
                              orderStatus = o.OrderStatus,
                              discount = oi.Discount,
-                             unitProce = oi.UnitPrice,
+                             unitPrice = oi.UnitPrice,
                              orderNumber = o.OrderNumber,
                              taxAmt = o.TaxAmount,
                              categoryName = c.CategoryName,

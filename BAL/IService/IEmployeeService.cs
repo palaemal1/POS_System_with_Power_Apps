@@ -12,8 +12,9 @@ namespace BAL.IService
     {
         Task AddNewEmployee(AddNewEmployee input);
         Task<IEnumerable<Employees>> GetAllEmployee();
-        Task<IEnumerable<EmployeeAccessDTO>> GetEmployeeByName(string employeeName);
+        Task<IEnumerable<EmployeeAccessDTO>> GetEmployeeByName(string employeeEmail);
         Task UpdateEmployee(Guid id, UpdateEmployeeDTO input);
         Task DeleteEmployee(Guid id , DeleteDTO request);
+        Task ChangePassword(Guid id, ChangePasswordDTO input);
     }
 }

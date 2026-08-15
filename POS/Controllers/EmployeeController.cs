@@ -28,9 +28,9 @@ namespace POS.Controllers
         }
 
         [HttpPost("GetEmployeeByName")]
-        public async Task<IActionResult>GetEmployeeByName(string employeeName)
+        public async Task<IActionResult>GetEmployeeByName(string employeeEmail)
         {
-            var data = await _employeeService.GetEmployeeByName(employeeName);
+            var data = await _employeeService.GetEmployeeByName(employeeEmail);
             return Ok(new ResponseModel { Data = data });
         }
 
@@ -46,6 +46,13 @@ namespace POS.Controllers
         {
             await _employeeService.UpdateEmployee(id, input);
             return Ok("Update successfully");
+        }
+
+        [HttpPost("ChangePassword")]
+        public async Task<IActionResult> ChangePassword(Guid id,ChangePasswordDTO input)
+        {
+            await _employeeService.ChangePassword(id,input);
+            return Ok("Change Password Successfully!");
         }
 
         [HttpPatch("DeleteEmployee/{id}")]

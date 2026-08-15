@@ -12,7 +12,7 @@ namespace BAL.IService
     public  interface IOrderItemService
     {
         Task AddOrderItem(AddNewOrderItem input);
-        Task<IEnumerable<OrderItems>> GetAllOrderItem();
+        Task<IEnumerable<object>> GetAllOrderItem();
         Task updateOrderItem(Guid id, UpdateOrderItemDTO input);
         Task DeleteOrderItem(Guid id, DeleteDTO request);
 
