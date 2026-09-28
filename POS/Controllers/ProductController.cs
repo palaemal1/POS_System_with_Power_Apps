@@ -1,4 +1,5 @@
 ﻿using BAL.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Model.DTO;
@@ -25,6 +26,7 @@ namespace Retail_API_.Controllers
             _ProductService = ProductService;
         }
 
+       // [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("GetAllProduct")]
         public async Task<IActionResult> GetProducts()
         {
@@ -33,6 +35,7 @@ namespace Retail_API_.Controllers
 
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpPost("GetProductByName")]
         public async Task<IActionResult> GetProductByName(string productName)
         {
@@ -40,14 +43,15 @@ namespace Retail_API_.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("DisplayProductList")]
         public async Task<IActionResult> DisplayProduct()
         {
             var data = await _ProductService.DisplayProduct();
             return Ok(new ResponseModel { Data = data });
         }
-        
 
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost("AddNewProduct")]
         public async Task<IActionResult> AddProduct(AddProductDTO input)
         {
@@ -57,6 +61,7 @@ namespace Retail_API_.Controllers
 
         }
 
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost("Update/Product")]
         public async Task<IActionResult> UpdateProduct(Guid id,UpdateProductDTO input) 
         {
@@ -64,6 +69,7 @@ namespace Retail_API_.Controllers
             return Ok("Update successfully");
         }
 
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPatch("Delete/Product/{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id, DeleteDTO request)
         {

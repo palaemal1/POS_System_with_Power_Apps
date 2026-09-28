@@ -1,4 +1,5 @@
 ﻿using BAL.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Model.DTO;
@@ -20,6 +21,7 @@ namespace POS.Controllers
             _employeeService = employeeService;
         }
 
+       // [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("GetAllEmployee")]
         public async Task<IActionResult> GetAllEmployee()
         {
@@ -27,6 +29,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+       // [Authorize(Roles = "Admin")]
         [HttpPost("GetEmployeeByName")]
         public async Task<IActionResult>GetEmployeeByName(string employeeEmail)
         {
@@ -34,6 +37,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("AddNewEmployee")]
         public async Task<IActionResult> AddNewEmployee(AddNewEmployee input)
         {
@@ -41,6 +45,7 @@ namespace POS.Controllers
             return Ok("Add employee successfully");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("UpdateEmployee")]
         public async Task<IActionResult> UpdateEmployee(Guid id,UpdateEmployeeDTO input)
         {
@@ -48,6 +53,7 @@ namespace POS.Controllers
             return Ok("Update successfully");
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpPost("ChangePassword")]
         public async Task<IActionResult> ChangePassword(Guid id,ChangePasswordDTO input)
         {
@@ -55,6 +61,7 @@ namespace POS.Controllers
             return Ok("Change Password Successfully!");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPatch("DeleteEmployee/{id}")]
         public async Task<IActionResult> DeleteEmployee(Guid id , DeleteDTO request)
         {

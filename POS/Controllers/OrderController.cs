@@ -1,4 +1,5 @@
 ﻿using BAL.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Model.DTO;
@@ -20,6 +21,7 @@ namespace POS.Controllers
             _orderService = orderService;
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("GetOrder")]
         public async Task<IActionResult> GetOrder()
         {
@@ -27,6 +29,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("DailySaleOrderReport")]
         public async Task<IActionResult> DailySaleOrderReport()
         {
@@ -34,6 +37,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("MonthlySaleOrderReport")]
         public async Task<IActionResult> MonthlySaleOrderReport()
         {
@@ -43,6 +47,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("WeeklySaleOrderReport")]
         public async Task<IActionResult> WeeklySaleOrderReport()
         {
@@ -50,6 +55,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpPost("NewOrder")]
         public async Task<IActionResult> newOrder(AddNewOrder input)
         {
@@ -58,6 +64,7 @@ namespace POS.Controllers
             return Ok("Order successfully");
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpPost("UpdateOrder")]
         public async Task<IActionResult> UpdateOrder(Guid id, UpdateOrderDTO input)
         {
@@ -65,6 +72,7 @@ namespace POS.Controllers
             return Ok("Update successfully");
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpPatch("DeleteOrder/{id}")]
         public async Task<IActionResult> DeleteOrder(Guid id, DeleteDTO request)
         {

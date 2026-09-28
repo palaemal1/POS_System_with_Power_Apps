@@ -1,4 +1,5 @@
 ﻿using BAL.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Model.DTO;
@@ -19,6 +20,7 @@ namespace POS.Controllers
             _paymentService = paymentService;
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("GetPaymentById")]
         public async Task<IActionResult> GetPaymentById(Guid id)
         {
@@ -26,6 +28,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpPost("AddNewPayment")]
         public async Task<IActionResult> AddNewPayment(AddNewPayment input)
         {
@@ -33,6 +36,7 @@ namespace POS.Controllers
             return Ok("Add payment successfully.");
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpPost("UpdatePaymentMethod")]
         public async Task<IActionResult> UpdatePaymentMethod(Guid id,UpdatePaymentDTO input)
         {

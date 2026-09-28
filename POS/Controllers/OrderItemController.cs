@@ -23,8 +23,8 @@ namespace POS.Controllers
             _orderItemService = orderItemService;
         }
 
-        
-        [Authorize(Roles ="Admin")]
+
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("GetAllOrderItem")]
         public async Task<IActionResult> GetOrderItem()
         {
@@ -32,7 +32,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
-        
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("GetOrderItemWithPagination")]
         public async Task<IActionResult> GetOrderItemWithPagination(int page,int pageSize)
         {
@@ -40,6 +40,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpPost("GetOrderItemListById")]
         public async Task<IActionResult> GetOrderItemListById(string id)
         {
@@ -47,6 +48,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("GetOrderItemsWithPagination")]
         public async Task<IActionResult> GetOrderItemsWithPagination(
             int page,
@@ -57,6 +59,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("GetOrderItemListWithPagination")]
         public async Task<IActionResult> GetOrderItemListWithPagination(int page, int pageSize)
         {
@@ -64,6 +67,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("GetOrderItemsWithPaginationDesc")]
         public async Task<IActionResult> GetOrderItemsWithPaginationDesc(int page,int pageSize,string columnName)
         {
@@ -71,6 +75,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpPost("AddOrderItem")]
         public async Task<IActionResult> AddOrderItem(AddNewOrderItem input)
         {
@@ -78,6 +83,7 @@ namespace POS.Controllers
             return Ok("Add order item successfully");
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpPost("UpdateOrderItem")]
         public async Task<IActionResult> UpdateOrderItem(Guid id,UpdateOrderItemDTO input)
         {
@@ -85,6 +91,7 @@ namespace POS.Controllers
             return Ok("Update order item successfully");
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpPatch("DeleteOrderItem/{id}")]
         public async Task<IActionResult> DeleteOrderItem(Guid id, DeleteDTO request)
         {
@@ -92,6 +99,7 @@ namespace POS.Controllers
             return Ok("Delete order item successfully");
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("GetAllOrderItemList")]
         public async Task<IActionResult> GetAllOrderItemList()
         {
@@ -99,6 +107,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data = data });
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpPost("AddMultipleOrderItem")]
         public async Task<IActionResult> AddMultipleOrderItem(IEnumerable<AddNewOrderItem> input)
         {

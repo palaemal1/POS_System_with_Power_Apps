@@ -1,4 +1,5 @@
 ﻿using BAL.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Model.DTO;
@@ -19,6 +20,7 @@ namespace POS.Controllers
             _customerService = customerService;
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("GetAllCustomer")]
         public async Task<IActionResult> GetAllCustomer()
         {
@@ -26,6 +28,7 @@ namespace POS.Controllers
             return Ok(new ResponseModel { Data=data});
         }
 
+        [Authorize(Roles = "Admin,Cashier")]
         [HttpPost("AddNewCustomer")]
         public async Task<IActionResult> AddNewCustomer(AddCustomerDTO input)
         {
@@ -33,6 +36,7 @@ namespace POS.Controllers
             return Ok("Add new customer.");
         }
 
+        [Authorize(Roles = "Admin,Cashier")]
         [HttpPost("UpdateCustomer")]
         public async Task<IActionResult> UpdateCustomer(Guid id, UpdateCustomer input)
         {
@@ -40,6 +44,7 @@ namespace POS.Controllers
             return Ok("Update successfully");
         }
 
+        [Authorize(Roles = "Admin,Cashier")]
         [HttpPatch("DeleteCustomer/{id}")]
         public async Task<IActionResult> DeleteCustomer(Guid id, DeleteDTO request)
         {

@@ -1,4 +1,5 @@
 ﻿using BAL.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Model.DTO;
@@ -20,6 +21,7 @@ namespace POS.Controllers
             _categoryService = categoryService;
         }
 
+        [Authorize(Roles = "Admin,Manager,Cashier")]
         [HttpGet("GetAllCategory")]
         public async Task<IActionResult> GetCategories()
         {
@@ -28,6 +30,7 @@ namespace POS.Controllers
 
         }
 
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost("AddNewCategory")]
         public async Task<IActionResult> AddCategory(CategoryDTO input)
         {
@@ -35,6 +38,7 @@ namespace POS.Controllers
             return Ok("Add new Category");
         }
 
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost("UpdateCategory")]
         public async Task<IActionResult> UpdateCategory(Guid id,UpdateCategoryDTO input)
         {
@@ -42,6 +46,7 @@ namespace POS.Controllers
             return Ok("Update successfully");
         }
 
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPatch("DeleteCategory/{id}")]
         public async Task<IActionResult> DeleteCategory(Guid id, DeleteDTO request)
         {
